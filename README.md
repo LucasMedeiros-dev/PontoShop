@@ -14,8 +14,8 @@ Este é um projeto Django para gerenciar presenças e imersionistas.
 1. Clone o repositório:
 
     ```sh
-    git clone https://github.com/seu-usuario/ponto.git
-    cd ponto
+    git clone https://github.com/LucasMedeiros-dev/PontoShop
+    cd pontoshop
     ```
 
 2. Crie e ative um ambiente virtual:
