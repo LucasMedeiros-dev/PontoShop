@@ -1,6 +1,14 @@
 from django.contrib import admin
-from .models import Responsavel, Turma, Imersionista, Presenca
+from .models import Responsavel, Turma, Imersionista, Presenca, UserActivityLogger
 # Register your models here.
+
+
+@admin.register(UserActivityLogger)
+class UserActivityLoggerAdmin(admin.ModelAdmin):
+    list_display = ("data", "evento", "usuario")
+    list_filter = ("data", "usuario")
+    search_fields = ("evento", "usuario")
+
 
 admin.site.register(Responsavel)
 

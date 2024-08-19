@@ -1,3 +1,4 @@
+from rest_framework.permissions import IsAdminUser
 from .serializers import UsuarioCreateSerializers
 from django.utils.crypto import get_random_string
 from rest_framework.response import Response
@@ -12,6 +13,7 @@ from django.conf import settings
 
 class CreateUsersViewSet(ViewSet):
     serializer_class = UsuarioCreateSerializers
+    permission_classes = [IsAdminUser]
 
     def create(self, request):
         serializer = UsuarioCreateSerializers(data=request.data)

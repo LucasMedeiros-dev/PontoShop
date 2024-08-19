@@ -1,6 +1,5 @@
 from django.db import models
 from django.utils import timezone
-# Create your models here.
 
 
 class Responsavel(models.Model):
@@ -43,6 +42,15 @@ class Imersionista(models.Model):
 
     def __str__(self):
         return f"{self.nome} - {self.rgm} - {self.turma} "
+
+
+class UserActivityLogger(models.Model):
+    data = models.DateTimeField(auto_now_add=True)
+    evento = models.CharField(max_length=100)
+    usuario = models.CharField(max_length=100)
+
+    def __str__(self):
+        return self.evento
 
 
 class Presenca(models.Model):
