@@ -29,9 +29,9 @@ Por favor, ao fazer o primeiro login, recomendamos que você altere sua senha pa
 Se precisar de qualquer assistência ou tiver dúvidas, sinta-se à vontade para entrar em contato com nossa equipe de suporte.<br><br>
 
 
-Atenciosamente,
+Atenciosamente,<br><br>
 
-Lucas Medeiros,
+Lucas Medeiros,<br>
 Responsável por Back-End.
 """,
 )

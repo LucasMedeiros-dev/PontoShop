@@ -25,4 +25,5 @@ urlpatterns = [
     path("login/refresh/", TokenRefreshView.as_view(), name="token_refresh"),
     path("login/", CustomTokenObtainPairView.as_view(), name="token_obtain_pair"),
     path("api/", include("ponto.urls")),
+    path("cadastro/", include("cadastro_instrutor.urls")),
 ]
