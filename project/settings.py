@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from pathlib import Path
 from datetime import timedelta
 from dotenv import load_dotenv
+import os
 
 load_dotenv()
 
@@ -25,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = "django-insecure-v#vg=kk((7m!ka*8e^l+)vpong%u0w+cf6%9uot&60rso-5e1i"
-
+SG_KEY = os.getenv("SG_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 

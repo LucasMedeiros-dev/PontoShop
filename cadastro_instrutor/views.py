@@ -7,10 +7,12 @@ from sendgrid.helpers.mail import Mail
 from sendgrid import SendGridAPIClient
 from ponto.models import Responsavel
 from rest_framework import status
-from os import environ
+from django.conf import settings
 
 
 class CreateUsersViewSet(ViewSet):
+    serializer_class = UsuarioCreateSerializers
+
     def create(self, request):
         serializer = UsuarioCreateSerializers(data=request.data)
         if serializer.is_valid():
@@ -28,7 +30,7 @@ class CreateUsersViewSet(ViewSet):
             )
 
             # Prepara o conteúdo do email
-            email_content = f"""Olá {user.username},<br><br>
+            email_content = f"""Olá Veterano!,<br><br>
 
             É com grande alegria que informamos que você foi escolhido para a função de {responsavel.get_cargo_display()}! Parabéns por essa conquista!<br><br>
 
@@ -61,7 +63,7 @@ class CreateUsersViewSet(ViewSet):
                 html_content=email_content,
             )
             try:
-                sg = SendGridAPIClient(environ.get("SG_KEY"))
+                sg = SendGridAPIClient(settings.SG_KEY)
                 response = sg.send(message)
                 print(response.status_code)
                 print(response.body)
