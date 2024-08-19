@@ -1,5 +1,5 @@
 from django.db import models
-
+from django.utils import timezone
 # Create your models here.
 
 
@@ -68,6 +68,11 @@ class Presenca(models.Model):
             if Presenca.objects.filter(aluno=self.aluno, data=self.data).exists():
                 raise ValueError(
                     "A presença para este aluno nesta data já foi registrada."
+                )
+            # Impede a criação de uma presença para uma data futura
+            if self.data > timezone.now().date():
+                raise ValueError(
+                    "Não é permitido registrar presenças para datas futuras."
                 )
         else:
             # Impede a alteração da data durante uma atualização
