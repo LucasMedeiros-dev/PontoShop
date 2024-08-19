@@ -63,6 +63,18 @@ class Presenca(models.Model):
         return f"{self.aluno.nome} - {self.data} - {self.situacao}"
 
     def save(self, *args, **kwargs):
-        if Presenca.objects.filter(aluno=self.aluno, data=self.data).exists():
-            raise ValueError("Já existe uma presença para o aluno nesta data")
+        if self.pk is None:
+            # Verifica se já existe uma presença para o aluno nesta data, apenas no caso de criação
+            if Presenca.objects.filter(aluno=self.aluno, data=self.data).exists():
+                raise ValueError(
+                    "A presença para este aluno nesta data já foi registrada."
+                )
+        else:
+            # Impede a alteração da data durante uma atualização
+            original = Presenca.objects.get(pk=self.pk)
+            if original.data != self.data:
+                raise ValueError(
+                    "Não é permitido alterar a data de uma presença existente."
+                )
+
         super().save(*args, **kwargs)

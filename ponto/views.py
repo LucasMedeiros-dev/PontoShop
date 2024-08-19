@@ -1,13 +1,13 @@
 from .serializers import PresencaSerializer, ImersionistaSerializer, TipoUserSerializer
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 from rest_framework_simplejwt.views import TokenObtainPairView
-from project.CustomPermissions import IsInstrutorOrMonitor
+from project.CustomPermissions import IsInstrutorOrMonitor, ImersionistaReadOnly
 from ponto.models import Presenca, Imersionista
 
 
 class ImersionistaViewSet(ReadOnlyModelViewSet):
     serializer_class = ImersionistaSerializer
-    permission_classes = [IsInstrutorOrMonitor]
+    permission_classes = [ImersionistaReadOnly]
 
     def get_queryset(self):
         return Imersionista.objects.filter(turma__responsavel__user=self.request.user)
